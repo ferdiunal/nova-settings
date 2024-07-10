@@ -2,6 +2,8 @@
 
 namespace Ferdiunal\NovaSettings\Traits;
 
+use function Ferdiunal\NovaSettings\getSettingReourceNamespace;
+
 trait Utils
 {
     protected function makeFakeResource(string $fieldName, $fieldValue)
@@ -15,31 +17,12 @@ trait Utils
     protected function getStub($name)
     {
         return file_get_contents(
-            realpath(__DIR__."/../../stubs/{$name}.stub")
+            realpath(__DIR__ . "/../../stubs/{$name}.stub")
         );
     }
 
     protected function getNamespace(): string
     {
-        $path = preg_replace(
-            [
-                '/^('.preg_quote(base_path(), '/').')/',
-                '/\//',
-            ],
-            [
-                '',
-                '\\',
-            ],
-            config('nova-settings.setting_resource_class_path')
-        );
-
-        $namespace = implode('\\', array_map(fn ($directory) => ucfirst($directory), explode('\\', $path)));
-
-        // Remove leading backslash if present
-        if (substr($namespace, 0, 1) === '\\') {
-            $namespace = substr($namespace, 1);
-        }
-
-        return $namespace;
+        return getSettingReourceNamespace();
     }
 }

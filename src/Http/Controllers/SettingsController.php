@@ -11,13 +11,15 @@ use Illuminate\Support\LazyCollection;
 use Laravel\Nova\Contracts\Resolvable;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
+use function Ferdiunal\NovaSettings\settingsResources;
+
 class SettingsController extends Controller
 {
     use Utils;
 
     public function get(string $group, NovaRequest $request)
     {
-        $resources = LazyCollection::make(Context::get('nova-settings-resources'))
+        $resources = settingsResources()
             ->where(
                 fn ($resource) => str($resource['group'])->lower()->slug()->__toString() === str($group)->lower()->slug()->__toString()
             )->sort(
@@ -35,7 +37,7 @@ class SettingsController extends Controller
 
     public function save(string $group, NovaRequest $request)
     {
-        $resources = LazyCollection::make(Context::get('nova-settings-resources'))
+        $resources = settingsResources()
             ->where(
                 fn ($resource) => (
                     str($resource['group'])->lower()->slug()->__toString() === str($group)->lower()->slug()->__toString()

@@ -1,4 +1,6 @@
-/* Nova Tool CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .tabs {
   @apply flex min-w-full flex-none gap-x-4 text-sm leading-6 text-gray-400;

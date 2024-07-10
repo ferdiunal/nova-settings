@@ -19,8 +19,8 @@ class NovaSettings extends Tool
      */
     public function boot()
     {
-        Nova::script('nova-settings', __DIR__.'/../dist/js/tool.js');
-        Nova::style('nova-settings', __DIR__.'/../dist/css/tool.css');
+        Nova::script('nova-settings', __DIR__ . '/../dist/js/tool.js');
+        Nova::style('nova-settings', __DIR__ . '/../dist/css/tool.css');
     }
 
     /**
@@ -30,7 +30,7 @@ class NovaSettings extends Tool
      */
     public function menu(Request $request)
     {
-        $resources = LazyCollection::make(Context::get('nova-settings-resources'))->pluck('group')->unique()->map(
+        $resources = settingsResources()->pluck('group')->unique()->map(
             fn ($group) => MenuItem::make(
                 str($group)->title()
                     ->when(

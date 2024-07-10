@@ -8,6 +8,8 @@ use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Context;
 use Illuminate\Support\LazyCollection;
 
+use function Ferdiunal\NovaSettings\settingsResources;
+
 class MakeSettingResource extends Command
 {
     use Utils;
@@ -42,8 +44,8 @@ class MakeSettingResource extends Command
             $name = str($name)->replace($lowerType, '');
         }
 
-        if (! str($name)->endsWith($type)) {
-            $name = $name.$type;
+        if (!str($name)->endsWith($type)) {
+            $name = $name . $type;
         }
 
         return $name;
@@ -53,14 +55,14 @@ class MakeSettingResource extends Command
     {
         $setting_name = $this->getFilename($name, 'Settings');
         $resource_name = $this->getFilename($name, 'Resource');
-        $countResource = LazyCollection::make(Context::get('nova-settings-resources'))->count();
+        $countResource = settingsResources()->count();
 
         $path = $this->novaSettingsPath(
             sprintf('%s.php', $resource_name)
         );
 
         if (file_exists($path)) {
-            if (! $this->option('force')) {
+            if (!$this->option('force')) {
                 $this->error('Resource already exists!');
 
                 return;
@@ -70,7 +72,7 @@ class MakeSettingResource extends Command
             unlink($path);
         }
 
-        if (! file_exists($this->novaSettingsPath())) {
+        if (!file_exists($this->novaSettingsPath())) {
             mkdir($this->novaSettingsPath());
         }
 
@@ -78,12 +80,12 @@ class MakeSettingResource extends Command
             $path,
             str_replace(
                 ['{{namespace}}', '{{resource_name}}', '{{setting_name}}', '{{field_label}}', '{{field_attribute}}', '{{title_name}}', '{{order}}', '{{description}}'],
-                [$this->getNamespace(), $resource_name, $setting_name, $name.' Field Label', str($name)->trim()->snake()->slug(), $resource_name, $countResource, Inspiring::quotes()->random(preserveKeys: true)],
+                [$this->getNamespace(), $resource_name, $setting_name, $name . ' Field Label', str($name)->trim()->snake()->slug(), $resource_name, $countResource, Inspiring::quotes()->random(preserveKeys: true)],
                 $this->getStub('SettingResource')
             )
         );
 
         $this->info('Resource created successfully.');
-        $this->line('Resource path: '.str($path)->replace(base_path(), '')->replaceFirst('/', ''));
+        $this->line('Resource path: ' . str($path)->replace(base_path(), '')->replaceFirst('/', ''));
     }
 }

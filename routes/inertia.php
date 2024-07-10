@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\LazyCollection;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
+use function Ferdiunal\NovaSettings\settingsResources;
+
 /*
 |--------------------------------------------------------------------------
 | Tool Routes
@@ -17,7 +19,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 Route::get('/{group}', function (string $group, NovaRequest $request) {
     $group = str($group)->lower()->slug()->__toString();
-    $resources = LazyCollection::make(Context::get('nova-settings-resources'))
+    $resources = settingsResources()
         ->where(
             fn ($resource) => str($resource['group'])->lower()->slug()->__toString() === str($group)->lower()->slug()->__toString()
         );

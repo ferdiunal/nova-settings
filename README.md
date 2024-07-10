@@ -4,6 +4,13 @@
 
 Nova Settings is a Laravel Nova package that provides an intuitive interface for managing settings using Spatie's settings package.
 
+### Screenshots
+
+<img src="./pictures/screenshot-0.png" width="70%">
+<img src="./pictures/screenshot-1.png" width="70%">
+<img src="./pictures/screenshot-2.png" width="70%">
+
+
 ### Installation
 
 To install Nova Settings, you can use Composer:
@@ -30,7 +37,9 @@ public function tools()
 ### Create Settings Resource
 
 ```bash
-php artisan make:settings-resource GeneralSettings --group General 
+php artisan make:settings-resource GeneralSettings --group General   
+# Resource created successfully.
+# Resource path: app/NovaSettings/GeneralSettings.php
 ```
 
 ### Usage
@@ -71,6 +80,7 @@ Make sure you have Spatie's settings package installed and configured in your La
 - Easy integration with Laravel Nova
 - User-friendly settings management interface
 - Compatible with Spatie's settings package
+
 
 ### Contributing
 Contributions are welcome! Please feel free to submit a Pull Request or open an issue.
