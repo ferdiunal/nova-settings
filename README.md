@@ -1,5 +1,7 @@
 # Nova Settings
 
+**WIP: This project is a Work in Progress. Features and documentation might change.**
+
 Nova Settings is a Laravel Nova package that provides an intuitive interface for managing settings using Spatie's settings package.
 
 ### Installation
