@@ -1,0 +1,61 @@
+<?php
+
+namespace {{namespace}};
+
+use App\Settings\{{setting_name}};
+use Ferdiunal\NovaSettings\SettingResource;
+use Laravel\Nova\Fields\Text;
+
+class {{resource_name}} extends SettingResource
+{
+    /**
+     * The settings class that this resource corresponds to.
+     * @return class-string<\App\Settings\{{setting_name}}>
+     */
+    public static function settings(): string
+    {
+        return {{setting_name}}::class;
+    }
+
+    /**
+     * The title for the setting resource.
+     *
+     * @return string
+     */
+    public static function title(): string
+    {
+        return '{{title_name}}';
+    }
+
+    /**
+     * The description for the setting resource.
+     *
+     * @return string
+     */
+    public static function description(): string
+    {
+        return '{{description}}';
+    }
+
+    /**
+     * The order of the setting resource.
+     *
+     * @return int
+     */
+    public static function order(): int
+    {
+        return {{order}};
+    }
+
+    /**
+     * Get the fields displayed by the resource.
+     *
+     * @return array
+     */
+    public static function fields(): array
+    {
+        return [
+            Text::make('{{field_label}}', '{{field_attribute}}'),
+        ];
+    }
+}

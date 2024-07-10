@@ -1,0 +1,61 @@
+{
+    "name": "ferdiunal/nova-settings",
+    "description": "A Laravel Nova tool to manage settings",
+    "keywords": [
+        "laravel",
+        "nova",
+        "settings",
+        "nova-settings",
+        "spatie-settings",
+        "spatie"
+    ],
+    "authors": [
+        {
+            "name": "Ferdi Ünal",
+            "email": "ferdiunal@outlook.com",
+            "homepage": "https://gitub.com/ferdiunal",
+            "role": "Developer"
+        }
+    ],
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/ferdiunal"
+        },
+        {
+            "type": "buymeacoffee",
+            "url": "https://buymeacoffee.com/ferdiunal"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^8.2",
+        "laravel/framework": "^11.0",
+        "laravel/nova": "^4.0",
+        "spatie/laravel-settings": "^3.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ferdiunal\\NovaSettings\\": "src/"
+        },
+        "files": ["src/helpers.php"]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ferdiunal\\NovaSettings\\NovaSettingsToolServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
