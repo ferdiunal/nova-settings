@@ -11,6 +11,7 @@ class SettingsHelper
 {
     public function __construct(
         protected array $settings = [],
+        protected ?string $group = null
     ) {
         if (empty($this->settings)) {
             $this->settings = config('settings.settings');
@@ -42,6 +43,7 @@ class SettingsHelper
 
         if (empty($arguments)) {
             return new SettingsHelper(
+                group: $name,
                 settings: $settings->toArray()
             );
         }
@@ -55,6 +57,7 @@ class SettingsHelper
 
         if ($settings->isNotEmpty()) {
             return new SettingsHelper(
+                group: $name,
                 settings: $settings->toArray()
             );
         }
@@ -62,18 +65,30 @@ class SettingsHelper
         return data_get($this->settings, $name, null);
     }
 
+    protected function all(): Collection
+    {
+        return collect($this->settings)->when(
+            ! $this->group,
+            fn ($collection) => $collection->mapWithKeys(
+                fn ($setting) => [
+                    $setting::group() => app($setting)->toArray(),
+                ]
+            )->dot()
+        );
+    }
+
     public function toArray(): array
     {
-        return $this->settings;
+        return $this->all()->toArray();
     }
 
     public function toCollection(): Collection
     {
-        return new Collection($this->settings);
+        return $this->all();
     }
 
     public function toJson(): string
     {
-        return json_encode($this->settings);
+        return $this->all()->toJson();
     }
 }

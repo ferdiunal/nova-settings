@@ -33,6 +33,37 @@ public function tools()
 php artisan make:settings-resource GeneralSettings --group General 
 ```
 
+### Usage
+
+After installation, you can access the settings interface from the Nova dashboard. This interface allows you to easily manage your application's settings without writing any additional code.
+
+To use the `SettingsHelper` class, you can utilize the provided `settings` helper function. Here are some examples:
+
+```php
+use function Ferdiunal\NovaSettings\settings;
+
+// Accessing all settings
+$allSettings = settings()->toArray();
+
+// Accessing settings as a collection
+$settingsCollection = settings()->toCollection(); // OR
+$settingsCollection = settings("general")->toCollection();
+
+// Converting settings to JSON
+$jsonSettings = settings()->toJson(); // OR
+$jsonSettings = settings("general")->toJson();
+
+// Accessing a specific group of settings
+$generalSettings = settings('general')->toArray();
+
+// Accessing a specific setting within a group
+$specificSetting = settings('general')->site_name;
+$specificSetting = settings('general')->site_name();
+
+// Accessing a nested setting directly
+$nestedSetting = settings('general.site_name');
+```
+
 ### Configuration
 Make sure you have Spatie's settings package installed and configured in your Laravel application. You can follow the [official documentation](https://github.com/spatie/laravel-settings?tab=readme-ov-file#installation) for detailed instructions.
 

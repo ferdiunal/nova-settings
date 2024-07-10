@@ -7,7 +7,9 @@ if (! function_exists('settings')) {
     {
         return once(
             function () use (&$group) {
-                $helper = new SettingsHelper();
+                $helper = new SettingsHelper(
+                    group: $group
+                );
 
                 if ($group) {
                     if (str($group)->contains('.')) {
