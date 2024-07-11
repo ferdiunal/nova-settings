@@ -26,7 +26,7 @@ class SettingsHelper
             )->flatMap(
                 fn ($setting) => app($setting)->toArray()
             );
-        } catch (RuntimeException|Exception|Error $e) {
+        } catch (RuntimeException | Exception | Error $e) {
             return new Collection([]);
         }
     }
@@ -65,30 +65,39 @@ class SettingsHelper
         return data_get($this->settings, $name, null);
     }
 
-    protected function all(): Collection
+    protected function all(bool $dot = true): Collection
     {
         return collect($this->settings)->when(
-            ! $this->group,
+            !$this->group,
             fn ($collection) => $collection->mapWithKeys(
                 fn ($setting) => [
                     $setting::group() => app($setting)->toArray(),
                 ]
-            )->dot()
+            )->when(
+                $dot,
+                fn ($collection) => $collection->dot()
+            )
         );
     }
 
     public function toArray(): array
     {
-        return $this->all()->toArray();
+        return $this->all(
+            dot: false
+        )->toArray();
     }
 
     public function toCollection(): Collection
     {
-        return $this->all();
+        return $this->all(
+            dot: false
+        );
     }
 
     public function toJson(): string
     {
-        return $this->all()->toJson();
+        return $this->all(
+            dot: false
+        )->toJson();
     }
 }
