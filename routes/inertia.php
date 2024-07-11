@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\LazyCollection;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 use function Ferdiunal\NovaSettings\settingsResources;

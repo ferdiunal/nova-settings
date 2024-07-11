@@ -3,8 +3,6 @@
 namespace Ferdiunal\NovaSettings;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Context;
-use Illuminate\Support\LazyCollection;
 use Laravel\Nova\Menu\MenuItem;
 use Laravel\Nova\Menu\MenuSection;
 use Laravel\Nova\Nova;
@@ -19,8 +17,8 @@ class NovaSettings extends Tool
      */
     public function boot()
     {
-        Nova::script('nova-settings', __DIR__ . '/../dist/js/tool.js');
-        Nova::style('nova-settings', __DIR__ . '/../dist/css/tool.css');
+        Nova::script('nova-settings', __DIR__.'/../dist/js/tool.js');
+        Nova::style('nova-settings', __DIR__.'/../dist/css/tool.css');
     }
 
     /**

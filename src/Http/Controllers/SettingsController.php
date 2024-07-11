@@ -5,9 +5,7 @@ namespace Ferdiunal\NovaSettings\Http\Controllers;
 use Ferdiunal\NovaSettings\Traits\Utils;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Context;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\LazyCollection;
 use Laravel\Nova\Contracts\Resolvable;
 use Laravel\Nova\Http\Requests\NovaRequest;
 

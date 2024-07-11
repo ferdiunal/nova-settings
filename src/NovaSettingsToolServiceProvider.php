@@ -4,10 +4,8 @@ namespace Ferdiunal\NovaSettings;
 
 use Ferdiunal\NovaSettings\Console\MakeSettingResource;
 use Ferdiunal\NovaSettings\Http\Middleware\Authorize;
-use Ferdiunal\NovaSettings\Traits\Utils;
 use Illuminate\Log\Context\Repository as ContextRepository;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\LazyCollection;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Nova\Events\ServingNova;
 use Laravel\Nova\Http\Middleware\Authenticate;
@@ -22,12 +20,12 @@ class NovaSettingsToolServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (!$this->app->configurationIsCached()) {
-            $this->mergeConfigFrom(__DIR__ . '/../config/nova-settings.php', 'nova-settings');
+        if (! $this->app->configurationIsCached()) {
+            $this->mergeConfigFrom(__DIR__.'/../config/nova-settings.php', 'nova-settings');
         }
 
         $this->publishes([
-            __DIR__ . '/../config/nova-settings.php' => config_path('nova-settings.php'),
+            __DIR__.'/../config/nova-settings.php' => config_path('nova-settings.php'),
         ], 'nova-settings-config');
 
         if ($this->app->runningInConsole()) {
@@ -61,11 +59,11 @@ class NovaSettingsToolServiceProvider extends ServiceProvider
         }
 
         Nova::router(['nova', Authenticate::class, Authorize::class], 'nova-settings')
-            ->group(__DIR__ . '/../routes/inertia.php');
+            ->group(__DIR__.'/../routes/inertia.php');
 
         Route::middleware(['nova', Authorize::class])
             ->prefix('nova-vendor/nova-settings')
-            ->group(__DIR__ . '/../routes/api.php');
+            ->group(__DIR__.'/../routes/api.php');
     }
 
     /**
@@ -73,7 +71,5 @@ class NovaSettingsToolServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
-    {
-    }
+    public function register() {}
 }

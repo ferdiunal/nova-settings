@@ -17,7 +17,7 @@ trait Utils
     protected function getStub($name)
     {
         return file_get_contents(
-            realpath(__DIR__ . "/../../stubs/{$name}.stub")
+            realpath(__DIR__."/../../stubs/{$name}.stub")
         );
     }
 
