@@ -91,8 +91,6 @@ class SettingsController extends Controller
                 $settingsClass->{$field->attribute} = $tempResource->{$field->attribute};
             });
 
-            ray($settingsClass);
-
             $settingsClass->save();
         });
 
