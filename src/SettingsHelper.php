@@ -26,7 +26,7 @@ class SettingsHelper
             )->flatMap(
                 fn ($setting) => app($setting)->toArray()
             );
-        } catch (RuntimeException | Exception | Error $e) {
+        } catch (RuntimeException|Exception|Error $e) {
             return new Collection([]);
         }
     }
@@ -68,7 +68,7 @@ class SettingsHelper
     protected function all(bool $dot = true): Collection
     {
         return collect($this->settings)->when(
-            !$this->group,
+            ! $this->group,
             fn ($collection) => $collection->mapWithKeys(
                 fn ($setting) => [
                     $setting::group() => app($setting)->toArray(),

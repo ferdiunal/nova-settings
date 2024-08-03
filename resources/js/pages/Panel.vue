@@ -10,10 +10,10 @@ const props = defineProps({
 <template>
     <div class="panel">
         <div class="panel-title">
-            <h2 class="text-base font-semibold leading-7 text-gray-900">
+            <h2 class="text-base font-semibold leading-7">
                 {{ title }}
             </h2>
-            <p class="mt-1 text-sm leading-6 text-gray-600">
+            <p class="mt-1 text-sm leading-6 font-thin">
                 {{ description }}
             </p>
         </div>
