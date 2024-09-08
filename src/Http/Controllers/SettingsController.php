@@ -18,6 +18,22 @@ class SettingsController extends Controller
     public function get(string $group, NovaRequest $request)
     {
         $resources = settingsResources()
+            ->filter(function ($resource) use ($request) {
+                $policy = str($resource['title'])->camel()->append('::view')->toString();
+                $user = $request->user();
+                if (method_exists($user, 'can') && method_exists($user, 'roles')) {
+                    $user->loadMissing([
+                        'roles',
+                        'roles.permissions',
+                        'permissions',
+                    ]);
+                    if ($user->roles->count()) {
+                        return $request->user()->can($policy);
+                    }
+                }
+
+                return true;
+            })
             ->where(
                 fn ($resource) => str($resource['group'])->lower()->slug()->__toString() === str($group)->lower()->slug()->__toString()
             )->sort(
@@ -26,11 +42,6 @@ class SettingsController extends Controller
                 unset($resource['settings']);
 
                 return $resource;
-            })
-            ->filter(function ($resource) use ($request) {
-                $policy = str($resource['title'])->camel()->append('::view')->toString();
-
-                return $request->user()->can($policy);
             })
             ->values();
 
