@@ -26,7 +26,13 @@ class SettingsController extends Controller
                 unset($resource['settings']);
 
                 return $resource;
-            })->values();
+            })
+            ->filter(function ($resource) use ($request) {
+                $policy = str($resource['title'])->camel()->append('::view')->toString();
+
+                return $request->user()->can($policy);
+            })
+            ->values();
 
         abort_unless($resources->isNotEmpty(), 404);
 

@@ -28,18 +28,25 @@ class NovaSettings extends Tool
      */
     public function menu(Request $request)
     {
-        $resources = settingsResources()->pluck('group')->unique()->map(
-            fn ($group) => MenuItem::make(
-                str($group)->title()
-                    ->when(
-                        str($group)->lower()->endsWith('settings'),
-                        fn ($title) => str($title)->replace(' settings', '')->ucfirst()->__toString()
-                    )
-                    ->append(' Settings')
-                    ->__toString(),
-                str($group)->lower()->slug()->prepend('/nova-settings/')->__toString()
-            )
-        );
+        $resources = settingsResources()
+            ->filter(function ($resource) use ($request) {
+                $policy = str($resource['title'])->camel()->append('::view')->toString();
+
+                return $request->user()->can($policy);
+            })
+            ->pluck('group')
+            ->unique()->map(
+                fn ($group) => MenuItem::make(
+                    str($group)->title()
+                        ->when(
+                            str($group)->lower()->endsWith('settings'),
+                            fn ($title) => str($title)->replace(' settings', '')->ucfirst()->__toString()
+                        )
+                        ->append(' Settings')
+                        ->__toString(),
+                    str($group)->lower()->slug()->prepend('/nova-settings/')->__toString()
+                )
+            );
 
         return MenuSection::make('Nova Settings', $resources->toArray())
             ->collapsable()

@@ -4,7 +4,6 @@ namespace Ferdiunal\NovaSettings;
 
 use Ferdiunal\NovaSettings\Console\MakeSettingResource;
 use Ferdiunal\NovaSettings\Http\Middleware\Authorize;
-use Illuminate\Log\Context\Repository as ContextRepository;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Nova\Events\ServingNova;
@@ -36,10 +35,6 @@ class NovaSettingsToolServiceProvider extends ServiceProvider
 
         $this->app->booted(function () {
             $this->routes();
-            // $this->app->make(ContextRepository::class)->add(
-            //     'nova-settings-resources',
-            //     $this->resources()
-            // );
         });
 
         Nova::serving(function (ServingNova $event) {
