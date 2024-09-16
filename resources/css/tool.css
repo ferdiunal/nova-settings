@@ -1,16 +1,3 @@
-.tabs {
-  @apply ns-flex ns-min-w-full ns-flex-none ns-gap-x-4 ns-text-sm ns-leading-6 ns-text-gray-400;
-  li {
-    button {
-    @apply ns-w-full ns-flex ns-min-h-8 ns-px-3.5 ns-py-1.5 ns-rounded ns-text-left ns-text-gray-500 dark:ns-text-gray-500 focus:ns-outline-none ns-cursor-pointer hover:ns-bg-gray-50 dark:hover:ns-bg-gray-800 ns-border ns-border-transparent;
-
-      &.active {
-        @apply ns-bg-white dark:ns-bg-gray-800 ns-text-primary-600 ns-border-primary-500 dark:ns-text-primary-600 ns-font-bold;
-      }
-    }
-  }
-}
-
 .nova-settings-form {
   button[type="submit"] {
     @apply ns-cursor-pointer ns-rounded ns-text-sm ns-font-bold focus:ns-outline-none focus:ns-ring ns-ring-primary-200 dark:ns-ring-gray-600 ns-inline-flex ns-items-center ns-justify-center ns-h-9 ns-px-3 ns-shadow ns-relative ns-bg-primary-500 hover:ns-bg-primary-400 ns-text-white dark:ns-text-gray-900;
