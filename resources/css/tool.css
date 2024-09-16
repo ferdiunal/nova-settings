@@ -1,15 +1,11 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 .tabs {
-  @apply flex min-w-full flex-none gap-x-4 text-sm leading-6 text-gray-400;
+  @apply ns-flex ns-min-w-full ns-flex-none ns-gap-x-4 ns-text-sm ns-leading-6 ns-text-gray-400;
   li {
     button {
-      @apply w-full flex min-h-8 px-3.5 py-1.5 rounded text-left text-gray-500 dark:text-gray-500 focus:outline-none cursor-pointer hover:bg-gray-50  dark:hover:bg-gray-800 border border-transparent;
+    @apply ns-w-full ns-flex ns-min-h-8 ns-px-3.5 ns-py-1.5 ns-rounded ns-text-left ns-text-gray-500 dark:ns-text-gray-500 focus:ns-outline-none ns-cursor-pointer hover:ns-bg-gray-50 dark:hover:ns-bg-gray-800 ns-border ns-border-transparent;
 
       &.active {
-        @apply bg-white dark:bg-gray-800 text-primary-600 border-primary-500 dark:text-primary-600 font-bold;
+        @apply ns-bg-white dark:ns-bg-gray-800 ns-text-primary-600 ns-border-primary-500 dark:ns-text-primary-600 ns-font-bold;
       }
     }
   }
@@ -17,19 +13,19 @@
 
 .nova-settings-form {
   button[type="submit"] {
-    @apply cursor-pointer rounded text-sm font-bold focus:outline-none focus:ring ring-primary-200 dark:ring-gray-600 inline-flex items-center justify-center h-9 px-3 shadow relative bg-primary-500 hover:bg-primary-400 text-white dark:text-gray-900;
+    @apply ns-cursor-pointer ns-rounded ns-text-sm ns-font-bold focus:ns-outline-none focus:ns-ring ns-ring-primary-200 dark:ns-ring-gray-600 ns-inline-flex ns-items-center ns-justify-center ns-h-9 ns-px-3 ns-shadow ns-relative ns-bg-primary-500 hover:ns-bg-primary-400 ns-text-white dark:ns-text-gray-900;
   }
   .panel-group {
-    @apply relative mb-4 grid gap-y-8 divide-y;
+    @apply ns-relative ns-mb-4 ns-grid ns-gap-y-8 ns-divide-y dark:!ns-divide-gray-800;
 
     .panel {
-      @apply !grid grid-cols-3 gap-x-4;
+    @apply !ns-grid ns-grid-cols-3 ns-gap-x-4;
       &:not(:first-child) {
-        @apply pt-8;
+        @apply ns-pt-8;
       }
     }
     .panel .panel-title {
-      @apply col-span-1;
+      @apply ns-col-span-1;
 
       p,
       h2 {
@@ -38,7 +34,7 @@
       }
     }
     .panel > .panel-content {
-      @apply md:col-span-2;
+      @apply md:ns-col-span-2;
     }
   }
 }

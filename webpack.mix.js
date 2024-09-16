@@ -6,14 +6,13 @@ const path = require("path");
 
 require("./nova.mix");
 
-mix.setPublicPath("dist")
-    .js("resources/js/tool.js", "js")
-    .vue({ version: 3 })
-    .postCss("./resources/css/tool.css", "css", [
-        postcssImport(),
-        tailwindcss(
-            path.join(__dirname, "../../vendor/laravel/nova/tailwind.config.js")
-        ),
-        postcssRtlcss(),
-    ])
-    .nova("ferdiunal/nova-settings");
+mix
+  .setPublicPath("dist")
+  .js("resources/js/tool.js", "js")
+  .vue({ version: 3 })
+  .postCss("./resources/css/tool.css", "css", [
+    postcssImport(),
+    tailwindcss("tailwind.config.js"),
+    postcssRtlcss(),
+  ])
+  .nova("ferdiunal/nova-settings");
