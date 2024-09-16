@@ -3,7 +3,7 @@
     @apply ns-cursor-pointer ns-rounded ns-text-sm ns-font-bold focus:ns-outline-none focus:ns-ring ns-ring-primary-200 dark:ns-ring-gray-600 ns-inline-flex ns-items-center ns-justify-center ns-h-9 ns-px-3 ns-shadow ns-relative ns-bg-primary-500 hover:ns-bg-primary-400 ns-text-white dark:ns-text-gray-900;
   }
   .panel-group {
-    @apply ns-relative ns-mb-4 ns-grid ns-gap-y-8 ns-divide-y dark:!ns-divide-gray-800;
+    @apply ns-relative ns-mb-4 ns-grid ns-gap-y-8 ns-divide-y ns-divide-gray-200 dark:ns-hidden dark:ns-divide-gray-800;
 
     .panel {
     @apply !ns-grid ns-grid-cols-3 ns-gap-x-4;
