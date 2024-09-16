@@ -43,7 +43,10 @@ if (! function_exists('getSettingReourceNamespace')) {
             config('nova-settings.setting_resource_class_path')
         );
 
-        $namespace = implode('\\', array_map(fn ($directory) => ucfirst($directory), explode('\\', $path)));
+        $namespace = implode('\\', array_map(
+            fn ($directory) => str($directory)->camel()->ucfirst()->toString(),
+            explode('\\', $path))
+        );
 
         // Remove leading backslash if present
         if (substr($namespace, 0, 1) === '\\') {
