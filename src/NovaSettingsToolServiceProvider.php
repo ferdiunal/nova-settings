@@ -56,7 +56,7 @@ class NovaSettingsToolServiceProvider extends ServiceProvider
         Nova::router(['nova', Authenticate::class, Authorize::class], 'nova-settings')
             ->group(__DIR__.'/../routes/inertia.php');
 
-        Route::middleware(['nova', Authorize::class])
+        Route::middleware(['nova', Authenticate::class, Authorize::class])
             ->prefix('nova-vendor/nova-settings')
             ->group(__DIR__.'/../routes/api.php');
     }

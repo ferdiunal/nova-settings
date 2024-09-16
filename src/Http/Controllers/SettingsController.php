@@ -21,6 +21,10 @@ class SettingsController extends Controller
             ->filter(function ($resource) use ($request) {
                 $policy = str($resource['title'])->camel()->append('::view')->toString();
                 $user = $request->user();
+                if (! $user) {
+                    return false;
+                }
+
                 if (method_exists($user, 'can') && method_exists($user, 'roles')) {
                     $user->loadMissing([
                         'roles',
