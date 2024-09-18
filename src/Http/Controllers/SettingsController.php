@@ -104,7 +104,9 @@ class SettingsController extends Controller
                     return;
                 }
 
-                $tempResource = new \Laravel\Nova\Support\Fluent;
+                $tempResource = new \Laravel\Nova\Support\Fluent([
+                    $field->attribute => $settingsClass->{$field->attribute},
+                ]);
                 $field->fill($request, $tempResource);
 
                 $settingsClass->{$field->attribute} = $tempResource->{$field->attribute};
