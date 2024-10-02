@@ -53,13 +53,13 @@ class NovaSettings extends Tool
                             str($group)->lower()->endsWith('settings'),
                             fn ($title) => str($title)->replace(' settings', '')->ucfirst()->__toString()
                         )
-                        ->append(' Settings')
+                        ->append(__(' Settings'))
                         ->__toString(),
                     str($group)->lower()->slug()->prepend('/nova-settings/')->__toString()
                 )
             );
 
-        return MenuSection::make('Nova Settings', $resources->toArray())
+        return MenuSection::make(__('Nova Settings'), $resources->toArray())
             ->collapsable()
             ->icon('cog');
     }
