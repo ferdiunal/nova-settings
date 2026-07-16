@@ -4,7 +4,6 @@ namespace Ferdiunal\NovaSettings;
 
 use Ferdiunal\NovaSettings\Traits\Utils;
 use Illuminate\Http\Resources\ConditionallyLoadsAttributes;
-use Illuminate\Support\LazyCollection;
 use Laravel\Nova\Fields\FieldCollection;
 use Laravel\Nova\ResolvesFields;
 
@@ -53,14 +52,10 @@ abstract class SettingResource
             static::settings()
         );
 
-        $fields = LazyCollection::make(
-            FieldCollection::make(static::fields())->authorized(request())->toArray()
-        )->map(function ($field) {
-            $field->panel = sprintf('%s_%s', static::group(), str()->random(5));
-
-            return $field;
-        });
-
+        $fields = FieldCollection::make(static::fields())
+            ->assignDefaultPanel(self::group())
+            ->authorized(request());
+    
         $addResolveCallback = function (&$field) use (&$settings) {
             if (! empty($field->attribute)) {
                 if (property_exists($settings, $field->attribute)) {
